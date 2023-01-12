@@ -1,0 +1,1 @@
+const qtdCartas = Number(prompt("Com quantas cartas quer jogar?"));
