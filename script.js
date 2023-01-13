@@ -1,7 +1,7 @@
 
 let qtdCartas = parseInt(prompt("Com quantas cartas quer jogar? Escolha entre 4 e 14 cartas."));
 
-while (qtdCartas % 2 !== 0 || (qtdCartas < 4 && qtdCartas > 14) || !Number.isInteger(qtdCartas)) {
+while (qtdCartas % 2 !== 0 || (qtdCartas < 4 || qtdCartas > 14) || !Number.isInteger(qtdCartas)) {
 
     alert("Número de cartas inválido!");
     qtdCartas = parseInt(prompt("Com quantas cartas quer jogar? Escolha entre 4 e 14 cartas."));
@@ -23,7 +23,9 @@ const papagaios = ["Imagens/tripletsparrot.gif",
     "Imagens/unicornparrot.gif",
 ];
 
-
+function virarCarta({target}) {
+    console.log(target);
+}
 const container = document.querySelector(".container");
 function criaCarta(papagaio) {
     
@@ -35,6 +37,7 @@ function criaCarta(papagaio) {
     backImage.setAttribute("src", papagaio);
     frontImage.setAttribute("src", "Imagens/back.png");
     card.className = "card";
+    card.addEventListener("click", virarCarta);
     front.className = "front-face face";
     back.className = "back-face face";
     backImage.className = "back-img";
