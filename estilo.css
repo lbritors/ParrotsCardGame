@@ -4,17 +4,16 @@
 
 body {
     background-color: #EEF9BF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 1110px;
-    height: 100%;
+    height: 100vw;
+
 }
 footer {
     height: 103px;
     width: 100%;
     display:flex;
     justify-content: center;
+    align-items: center;
+    background-color:blueviolet;
 }
 footer h1 {
     width: 540px;
@@ -26,22 +25,33 @@ footer h1 {
     line-height: 66px;
     letter-spacing: -0.004em;
     color: #75B79E;
-    padding-top: 40px;
-}
-main .container {
-    padding-top: 47px;
-    
+    padding-top: 20px;
 }
 
 main {
-    max-width: 872px;
+    max-width: 90%;
+    height: 100%;
     margin: 0 auto;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+
+}
+.container {
+    width: 70%;
+    height: 40%;
+    background-color: aqua;
+    display: flex;
+    padding: 10px 5px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 main .card {
     max-width: 117px;
     height: 146px;
-    position: relative;
+    /*position: relative;*/
+    margin: 10px 10px;
 }
 
 .face {
@@ -51,7 +61,7 @@ main .card {
     display:flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    /*position: absolute;*/
     backface-visibility: hidden;
     transition: all .5s;
     transform-style: preserve-3d;
@@ -60,11 +70,13 @@ main .card {
 main .card .front-face .front-img {
     width: 100px;
     height: 100px;
+    object-fit: contain;
 
 }
 main .card .back-face .back-img {
     width: 100px;
     height: 100px;
+    object-fit: contain;
 }
 
 main .card .back-face {
@@ -77,4 +89,8 @@ main .card .back-face {
 
   .card:hover .front-face {
     transform: rotateY(-180deg);
+  }
+
+  .esconder {
+    display: none;
   }
