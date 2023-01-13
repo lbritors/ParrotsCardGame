@@ -21,7 +21,8 @@ const papagaios = ["Imagens/tripletsparrot.gif",
     "Imagens/revertitparrot.gif",
     "Imagens/unicornparrot.gif",
     "Imagens/unicornparrot.gif",
-]
+];
+
 
 const container = document.querySelector(".container");
 function criaCarta(papagaio) {
@@ -42,44 +43,33 @@ function criaCarta(papagaio) {
     card.appendChild(back);
     front.appendChild(frontImage);
     back.appendChild(backImage);
-    console.log(card);
     return card;
 
 }
 
-function adicionaCartas() {
-    const lista = document.querySelector(".container");
-
-    for (let contador = 0; contador < qtdCartas; contador++) {
-        lista.innerHTML += `
-    <div class="card">
-                <div class="front-face face">
-                    <img class="back-img" src="Imagens/back.png" alt="back-img">
-                </div>
-                <div class="back-face face">
-                    <img class="front-img" src="${papagaios[i]}" alt="front-img">
-                </div>
-            </div>
-    `;
-       
-    
-    }
-}
-
-
-function mostraCartas() {
-    let card;
+const lista = [];
+function adionaCartasNaLista() {
     for (let i = 0; i < qtdCartas; i++) {
-        card = criaCarta(papagaios[i]);
-        container.appendChild(card);
+        lista[i] = papagaios[i];
     }
-    
-    /*papagaios.forEach(papagaio => {
-        const card = criaCarta();
-        container.appendChild(card);
-    });*/
+    return lista;
 }
-mostraCartas();
+adionaCartasNaLista();
+
 function comparador() { 
     return Math.random() - 0.5; 
 }
+
+
+lista.sort(comparador);
+
+function mostraCartas() {
+    let card;
+    for (let i = 0; i < lista.length; i++) {
+        card = criaCarta(lista[i]);
+        container.appendChild(card);
+    }
+    
+}
+mostraCartas();
+

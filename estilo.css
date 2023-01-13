@@ -13,7 +13,7 @@ footer {
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color:blueviolet;
+    
 }
 footer h1 {
     width: 540px;
@@ -32,7 +32,6 @@ main {
     max-width: 90%;
     height: 100%;
     margin: 0 auto;
-    background-color: aquamarine;
     display: flex;
     justify-content: center;
 
@@ -40,18 +39,18 @@ main {
 .container {
     width: 70%;
     height: 40%;
-    background-color: aqua;
     display: flex;
-    padding: 10px 5px;
+    padding: 30px 5px 10px 5px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 main .card {
-    max-width: 117px;
-    height: 146px;
+    
     /*position: relative;*/
     margin: 10px 10px;
+    width: 147px;
+    height: 118px;
 }
 
 .face {
@@ -62,16 +61,16 @@ main .card {
     justify-content: center;
     align-items: center;
     /*position: absolute;*/
-    backface-visibility: hidden;
-    transition: all .5s;
+    transition: all .5s ease;
     transform-style: preserve-3d;
+    backface-visibility: hidden;
 }
 
 main .card .front-face .front-img {
     width: 100px;
     height: 100px;
     object-fit: contain;
-
+    
 }
 main .card .back-face .back-img {
     width: 100px;
@@ -81,14 +80,15 @@ main .card .back-face .back-img {
 
 main .card .back-face {
     transform: rotateY(180deg);
-  }
+}
 
   .card:hover .back-face {
     transform: rotateY(0deg);
+
   }
 
   .card:hover .front-face {
-    transform: rotateY(-180deg);
+    transform: rotateY(180deg);
   }
 
   .esconder {
