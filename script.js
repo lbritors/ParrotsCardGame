@@ -23,9 +23,34 @@ const papagaios = ["Imagens/tripletsparrot.gif",
     "Imagens/unicornparrot.gif",
 ];
 
-function virarCarta({target}) {
-    console.log(target);
+let firstCard = " ", secondCard = " ";
+let par = [];
+function virarCarta({ target }) {
+    const avo = target.parentNode.parentNode;
+    console.log(avo);
+    const back = avo.querySelector('.back-face');
+    back.classList.remove("initial");
+    const front = avo.querySelector('.front-face');
+    front.classList.add(".front-face-flip");
+    
+    
+
+   /*
+    const papagaio1 = target.getAttribute("src");
+    console.log(papagaio1);
+    par.push(papagaio1);
+    console.log(par);
+    while (par.length < 2) {
+        //não desvirar carta
+    }
+    //verificar se cartas são iguais
+    if (par[0] === par[1]) {
+        
+    }
+
+    */
 }
+
 const container = document.querySelector(".container");
 function criaCarta(papagaio) {
     
@@ -39,7 +64,7 @@ function criaCarta(papagaio) {
     card.className = "card";
     card.addEventListener("click", virarCarta);
     front.className = "front-face face";
-    back.className = "back-face face";
+    back.className = "back-face face initial";
     backImage.className = "back-img";
     frontImage.className = "front-img";
     card.appendChild(front);

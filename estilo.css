@@ -47,7 +47,7 @@ main {
 
 main .card {
     
-    /*position: relative;*/
+    position: relative;
     margin: 10px 10px;
     width: 100px;
     height: 200px;
@@ -60,7 +60,7 @@ main .card {
     display:flex;
     justify-content: center;
     align-items: center;
-    /*position: absolute;*/
+    position: absolute;
     transition: all .5s ease;
     transform-style: preserve-3d;
     backface-visibility: hidden;
@@ -78,16 +78,15 @@ main .card .back-face .back-img {
     object-fit: contain;
 }
 
- .card .back-face {
+ .card .back-face.initial {
     transform: rotateY(-180deg);
 }
 
-  .card:hover .back-face {
+ .card .back-face {
     transform: rotateY(0deg);
 
 }
-
-  .card:hover .front-face {
+.card .front-face-flip {
     transform: rotateY(180deg);
 }
 
