@@ -80,13 +80,24 @@ mostraCartas();
 let firstCard = " ", secondCard = " ";
 let cartasRestantes = qtdCartas;
 let numeroJogadas = 0;
-
+let cartasViradas = [];
+function bloqueia() {
+    while (cartasViradas.length == 2) {
+        document.querySelector(".container").classList.add("pointer-events");
+    }
+}
+function desbloqueia() {
+    while (cartasViradas.length != 2) {
+        document.querySelector(".container").classList.remove("pointer-events");
+        
+    }
+}
+ 
 function virarCarta({ target }) {
     const avo = target.parentNode.parentNode;
     const back = avo.querySelector('.back-face');
     const front = avo.querySelector('.front-face');
     const cartaVirada = avo.className.includes("turned");
-    
     
     if (cartaVirada) {
         return;
@@ -97,6 +108,7 @@ function virarCarta({ target }) {
         back.classList.remove("initial");
         avo.classList.add("turned");
         numeroJogadas++;
+        cartasViradas.push(firstCard);
         
     } else if (secondCard === " ") {
         secondCard = avo;
@@ -104,17 +116,27 @@ function virarCarta({ target }) {
         back.classList.remove("initial");
         avo.classList.add("turned");
         numeroJogadas++;
+        cartasViradas.push(secondCard);
         if (secondCard.getAttribute("data-parrot") === firstCard.getAttribute("data-parrot")) {
+            console.log(cartasViradas);
+            bloqueia();
             cartasRestantes -= 2;
             firstCard = " ";
             secondCard = " ";
+            cartasViradas.pop();
+            cartasViradas.pop();
+
+            console.log(cartasViradas);
+            
             if (cartasRestantes === 0) {
                 setTimeout(() => {
                     alert(`Você ganhou em ${numeroJogadas} jogadas!`);
                     
-                }, 300);
+                }, 200);
             }
         } else {
+            console.log(cartasViradas);
+
             setTimeout(() => {
                 firstCard.classList.remove("turned");
                 firstCard.firstChild.classList.remove("front-face-flip");
@@ -122,10 +144,14 @@ function virarCarta({ target }) {
                 secondCard.classList.remove("turned");
                 secondCard.firstChild.classList.remove("front-face-flip");
                 secondCard.lastChild.classList.add("initial");
-
                 firstCard = " ";
                 secondCard = " ";
             }, 1000);    
+            cartasViradas.pop();
+            cartasViradas.pop();
+
+            console.log(cartasViradas);
+
         }
     }   
 }
