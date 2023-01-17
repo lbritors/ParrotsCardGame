@@ -35,7 +35,7 @@ function criaCarta(papagaio) {
     frontImage.setAttribute("src", "Imagens/back.png");
     card.className = "card";
     card.setAttribute("data-test", "card");
-    card.addEventListener("click", virarCarta);
+    card.addEventListener("click", () => virarCarta(card));
     front.className = "front-face face";
     back.className = "back-face face initial";
     backImage.className = "back-img";
@@ -82,11 +82,10 @@ let cartasRestantes = qtdCartas;
 let numeroJogadas = 0;
 let cartasViradas = 0;
  
-function virarCarta({ target }) {
-    const avo = target.parentNode.parentNode;
-    const back = avo.querySelector('.back-face');
-    const front = avo.querySelector('.front-face');
-    const cartaVirada = avo.className.includes("turned");
+function virarCarta(card) {
+    const back = card.querySelector('.back-face');
+    const front = card.querySelector('.front-face');
+    const cartaVirada = card.className.includes("turned");
     
     if (cartaVirada) {
         return;
@@ -94,20 +93,20 @@ function virarCarta({ target }) {
     if (firstCard === " " && cartasViradas <= 2) {
         cartasViradas++;
         console.log(cartasViradas);
-        firstCard = avo;
+        firstCard = card;
         front.classList.add(".front-face-flip");
         back.classList.remove("initial");
-        avo.classList.add("turned");
+        card.classList.add("turned");
         numeroJogadas++;
         
     } else if (secondCard === " " && cartasViradas <= 2)  {
         cartasViradas++;
         console.log(cartasViradas);
 
-        secondCard = avo;
+        secondCard = card;
         front.classList.add(".front-face-flip");
         back.classList.remove("initial");
-        avo.classList.add("turned");
+        card.classList.add("turned");
         numeroJogadas++;
         if (secondCard.getAttribute("data-parrot") === firstCard.getAttribute("data-parrot")) {
     
