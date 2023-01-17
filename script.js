@@ -23,34 +23,6 @@ const papagaios = ["Imagens/tripletsparrot.gif",
     "Imagens/unicornparrot.gif",
 ];
 
-let firstCard = " ", secondCard = " ";
-let par = [];
-function virarCarta({ target }) {
-    const avo = target.parentNode.parentNode;
-    console.log(avo);
-    const back = avo.querySelector('.back-face');
-    back.classList.remove("initial");
-    const front = avo.querySelector('.front-face');
-    front.classList.add(".front-face-flip");
-    
-    
-
-   /*
-    const papagaio1 = target.getAttribute("src");
-    console.log(papagaio1);
-    par.push(papagaio1);
-    console.log(par);
-    while (par.length < 2) {
-        //não desvirar carta
-    }
-    //verificar se cartas são iguais
-    if (par[0] === par[1]) {
-        
-    }
-
-    */
-}
-
 const container = document.querySelector(".container");
 function criaCarta(papagaio) {
     
@@ -71,6 +43,7 @@ function criaCarta(papagaio) {
     card.appendChild(back);
     front.appendChild(frontImage);
     back.appendChild(backImage);
+    card.setAttribute("data-parrot", papagaio);
     return card;
 
 }
@@ -101,3 +74,50 @@ function mostraCartas() {
 }
 mostraCartas();
 
+let firstCard = " ", secondCard = " ";
+let cartasRestantes = qtdCartas;
+let par = [];
+
+function virarCarta({ target }) {
+    const avo = target.parentNode.parentNode;
+    console.log(avo);
+    const back = avo.querySelector('.back-face');
+    const front = avo.querySelector('.front-face');
+    const cartaVirada = avo.className.includes("turned");
+    
+    
+    if (cartaVirada) {
+        return;
+    }
+    if (firstCard === " ") {
+        firstCard = avo;
+        back.classList.remove("initial");
+        front.classList.add(".front-face-flip");
+        avo.classList.add("turned");
+        
+        
+    } else if (secondCard === " ") {
+        secondCard = avo;
+        back.classList.remove("initial");
+        front.classList.add(".front-face-flip");
+        avo.classList.add("turned");
+        if (secondCard.getAttribute("data-parrot") === firstCard.getAttribute("data-parrot")) {
+            cartasRestantes -= 2;
+            firstCard = " ";
+            secondCard = " ";
+        } else {
+            setTimeout(() => {
+                firstCard.classList.remove("turned");
+                firstCard.firstChild.classList.remove("front-face-flip");
+                firstCard.lastChild.classList.add("initial");
+                secondCard.classList.remove("turned");
+                secondCard.firstChild.classList.remove("front-face-flip");
+                secondCard.lastChild.classList.add("initial");
+
+                firstCard = " ";
+                secondCard = " ";
+            }, 1000);    
+        }
+    }
+    
+}
