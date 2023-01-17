@@ -76,7 +76,7 @@ mostraCartas();
 
 let firstCard = " ", secondCard = " ";
 let cartasRestantes = qtdCartas;
-let par = [];
+let numeroJogadas = 0;
 
 function virarCarta({ target }) {
     const avo = target.parentNode.parentNode;
@@ -94,15 +94,22 @@ function virarCarta({ target }) {
         back.classList.remove("initial");
         front.classList.add(".front-face-flip");
         avo.classList.add("turned");
-        
+        numeroJogadas++;
         
     } else if (secondCard === " ") {
         secondCard = avo;
         back.classList.remove("initial");
         front.classList.add(".front-face-flip");
         avo.classList.add("turned");
+        numeroJogadas++;
         if (secondCard.getAttribute("data-parrot") === firstCard.getAttribute("data-parrot")) {
             cartasRestantes -= 2;
+            if (cartasRestantes === 0) {
+                setTimeout(() => {
+                    alert(`Você ganhou em ${numeroJogadas} jogadas!`);
+                    
+                }, 300);
+            }
             firstCard = " ";
             secondCard = " ";
         } else {
@@ -118,6 +125,5 @@ function virarCarta({ target }) {
                 secondCard = " ";
             }, 1000);    
         }
-    }
-    
+    }   
 }
