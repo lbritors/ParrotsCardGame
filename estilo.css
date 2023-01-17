@@ -13,11 +13,10 @@ footer {
     display:flex;
     justify-content: center;
     align-items: center;
+    margin: 0 auto;
     
 }
 footer h1 {
-    width: 540px;
-    height: 63px;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -25,11 +24,10 @@ footer h1 {
     line-height: 66px;
     letter-spacing: -0.004em;
     color: #75B79E;
-    padding-top: 20px;
 }
 
 main {
-    max-width: 90%;
+    max-width: 100%;
     height: 100%;
     margin: 0 auto;
     display: flex;
@@ -46,11 +44,11 @@ main {
 }
 
 main .card {
-    
     position: relative;
     margin: 10px 10px;
     width: 100px;
-    height: 200px;
+    min-height: 150px;
+    max-height: 152px;
 }
 
 .face {
@@ -64,18 +62,18 @@ main .card {
     transition: all .5s ease;
     transform-style: preserve-3d;
     backface-visibility: hidden;
+    min-height: 150px;
 }
 
 main .card .front-face .front-img {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     
 }
 main .card .back-face .back-img {
     width: 100px;
     height: 100px;
-    object-fit: contain;
 }
 
  .card .back-face.initial {
@@ -88,5 +86,25 @@ main .card .back-face .back-img {
 }
 .card .front-face-flip {
     transform: rotateY(180deg);
+}
+
+@media  screen and (max-width: 600px) {
+    footer {
+    display: flex;
+    justify-content: center;
+    }
+    footer h1{
+    font-size: 36px;
+    line-height: 42px;
+    text-align: center;
+    }
+
+    .container {
+        flex-direction: column;
+        height: fit-content;
+        align-items: center;
+        justify-content: space-around;
+        
+    }
 }
 

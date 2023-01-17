@@ -1,4 +1,4 @@
-
+debugger;
 let qtdCartas = parseInt(prompt("Com quantas cartas quer jogar? Escolha entre 4 e 14 cartas."));
 
 while (qtdCartas % 2 !== 0 || (qtdCartas < 4 || qtdCartas > 14) || !Number.isInteger(qtdCartas)) {
@@ -34,11 +34,14 @@ function criaCarta(papagaio) {
     backImage.setAttribute("src", papagaio);
     frontImage.setAttribute("src", "Imagens/back.png");
     card.className = "card";
+    card.setAttribute("data-test", "card");
     card.addEventListener("click", virarCarta);
     front.className = "front-face face";
     back.className = "back-face face initial";
     backImage.className = "back-img";
+    backImage.setAttribute("data-test", "face-up-image");
     frontImage.className = "front-img";
+    frontImage.setAttribute("data-test", "face-down-image");
     card.appendChild(front);
     card.appendChild(back);
     front.appendChild(frontImage);
@@ -80,7 +83,6 @@ let numeroJogadas = 0;
 
 function virarCarta({ target }) {
     const avo = target.parentNode.parentNode;
-    console.log(avo);
     const back = avo.querySelector('.back-face');
     const front = avo.querySelector('.front-face');
     const cartaVirada = avo.className.includes("turned");
@@ -91,27 +93,27 @@ function virarCarta({ target }) {
     }
     if (firstCard === " ") {
         firstCard = avo;
-        back.classList.remove("initial");
         front.classList.add(".front-face-flip");
+        back.classList.remove("initial");
         avo.classList.add("turned");
         numeroJogadas++;
         
     } else if (secondCard === " ") {
         secondCard = avo;
-        back.classList.remove("initial");
         front.classList.add(".front-face-flip");
+        back.classList.remove("initial");
         avo.classList.add("turned");
         numeroJogadas++;
         if (secondCard.getAttribute("data-parrot") === firstCard.getAttribute("data-parrot")) {
             cartasRestantes -= 2;
+            firstCard = " ";
+            secondCard = " ";
             if (cartasRestantes === 0) {
                 setTimeout(() => {
                     alert(`Você ganhou em ${numeroJogadas} jogadas!`);
                     
                 }, 300);
             }
-            firstCard = " ";
-            secondCard = " ";
         } else {
             setTimeout(() => {
                 firstCard.classList.remove("turned");
